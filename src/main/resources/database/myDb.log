@@ -1,4 +1,0 @@
-/*C2*/SET SCHEMA PUBLIC
-SET SCHEMA "PUBLIC"
-INSERT INTO EVENTS VALUES('2268bd96-6672-43e8-a929-748572998098','Rocketseat NLW','Aprenda Java de forma gratuita','rocketseat-nlw',500)
-COMMIT

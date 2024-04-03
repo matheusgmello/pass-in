@@ -2,6 +2,7 @@ package br.com.matheusgmello.passin.services;
 
 import br.com.matheusgmello.passin.domain.attendee.Attendee;
 import br.com.matheusgmello.passin.domain.event.Event;
+import br.com.matheusgmello.passin.domain.event.exceptions.EventNotFoundException;
 import br.com.matheusgmello.passin.dto.event.EventIdDTO;
 import br.com.matheusgmello.passin.dto.event.EventRequestDTO;
 import br.com.matheusgmello.passin.dto.event.EventResponseDTO;
@@ -21,7 +22,7 @@ public class EventService {
     private final AttendeeRepository attendeeRepository;
 
     public EventResponseDTO getEventDetail(String eventId){
-        Event event = this.eventRepository.findById(eventId).orElseThrow(() -> new RuntimeException("Event not found with ID:" + eventId));
+        Event event = this.eventRepository.findById(eventId).orElseThrow(() -> new EventNotFoundException("Event not found with ID:" + eventId));
         List<Attendee> attendeeList = this.attendeeRepository.findByEventId(eventId);
         return new EventResponseDTO(event, attendeeList.size());
     }
