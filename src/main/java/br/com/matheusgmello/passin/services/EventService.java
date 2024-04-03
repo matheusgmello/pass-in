@@ -6,7 +6,6 @@ import br.com.matheusgmello.passin.domain.event.exceptions.EventNotFoundExceptio
 import br.com.matheusgmello.passin.dto.event.EventIdDTO;
 import br.com.matheusgmello.passin.dto.event.EventRequestDTO;
 import br.com.matheusgmello.passin.dto.event.EventResponseDTO;
-import br.com.matheusgmello.passin.repositories.AttendeeRepository;
 import br.com.matheusgmello.passin.repositories.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,11 +18,11 @@ import java.util.List;
 public class EventService {
 
     private final EventRepository eventRepository;
-    private final AttendeeRepository attendeeRepository;
+    private final AttendeeService attendeeService;
 
     public EventResponseDTO getEventDetail(String eventId){
         Event event = this.eventRepository.findById(eventId).orElseThrow(() -> new EventNotFoundException("Event not found with ID:" + eventId));
-        List<Attendee> attendeeList = this.attendeeRepository.findByEventId(eventId);
+        List<Attendee> attendeeList = this.attendeeService.getAllAttendeesFromEvent(eventId);
         return new EventResponseDTO(event, attendeeList.size());
     }
 

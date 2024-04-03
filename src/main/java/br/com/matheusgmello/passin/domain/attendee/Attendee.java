@@ -31,5 +31,5 @@ public class Attendee {
     private Event event;
 
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 }
