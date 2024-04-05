@@ -1,6 +1,8 @@
 package br.com.matheusgmello.passin.controllers;
 
 
+import br.com.matheusgmello.passin.dto.attendee.AttendeeIdDTO;
+import br.com.matheusgmello.passin.dto.attendee.AttendeeRequestDTO;
 import br.com.matheusgmello.passin.dto.attendee.AttendeesListResponseDTO;
 import br.com.matheusgmello.passin.dto.event.EventIdDTO;
 import br.com.matheusgmello.passin.dto.event.EventRequestDTO;
@@ -32,6 +34,14 @@ public class EventController {
         EventIdDTO eventIdDTO = this.eventService.createEvent(body);
         var uri = uriComponentsBuilder.path("/events/{id}").buildAndExpand(eventIdDTO.eventId()).toUri();
         return ResponseEntity.created(uri).body(eventIdDTO);
+
+    }
+
+    @PostMapping("/events/{eventId}/attendees")
+    public ResponseEntity<AttendeeIdDTO> registerParticipant(@PathVariable String eventId, @RequestBody AttendeeRequestDTO body, UriComponentsBuilder uriComponentsBuilder){
+        AttendeeIdDTO attendeeIdDTO = this.eventService.registerAttendeeOnEvent(eventId, body);
+        var uri = uriComponentsBuilder.path("/attendees/{attendeeId}/badge").buildAndExpand(attendeeIdDTO.attendeeId()).toUri();
+        return ResponseEntity.created(uri).body(attendeeIdDTO);
 
     }
 
