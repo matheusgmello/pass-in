@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Attendee {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
@@ -26,6 +26,7 @@ public class Attendee {
 
     @Column(nullable = false)
     private String email;
+
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;

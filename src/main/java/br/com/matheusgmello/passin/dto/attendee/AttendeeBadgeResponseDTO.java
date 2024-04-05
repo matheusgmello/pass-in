@@ -1,4 +1,5 @@
 package br.com.matheusgmello.passin.dto.attendee;
 
-public record AttendeeBadgeResponseDTO(AttendeeBadgeDTO badge){
+public record AttendeeBadgeResponseDTO(AttendeeBadgeDTO badge) {
+    
 }

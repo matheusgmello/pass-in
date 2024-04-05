@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CheckIn {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -27,5 +27,4 @@ public class CheckIn {
     @OneToOne
     @JoinColumn(name = "attendee_id", nullable = false)
     private Attendee attendee;
-
 }
